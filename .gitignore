@@ -1,0 +1,33 @@
+# Binarios compilados
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Archivos temporales de testing y cobertura
+*.test
+*.out
+coverage.txt
+
+# Base de datos local (evita subir credenciales o estados de prueba)
+*.db
+*.db-journal
+*.db-wal
+
+# Archivos de medios e imágenes generados localmente
+qrcode.png
+
+# Entorno de desarrollo local y herramientas de calidad
+.pre-commit-config.yaml.bak
+.golangci-lint.cache/
+
+# Configuración del editor (opcional, para mantener el metal limpio)
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

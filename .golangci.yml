@@ -1,0 +1,20 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck    # Verifica errores no manejados
+    - gosimple    # Sugiere simplificaciones de código
+    - govet       # Reporta sospechas de copias de variables, etc.
+    - ineffassign # Detecta asignaciones ineficaces
+    - staticcheck # Análisis estático avanzado
+    - unused      # Detecta código muerto
+    - gofmt       # Fuerza el formateo oficial
+    - goimports   # Organiza los imports automáticamente
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0

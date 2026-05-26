@@ -1,0 +1,40 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-assurance:
+    name: Lint & Test Engine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          cache: true # Almacena en caché las dependencias para acelerar la ejecución
+
+      - name: Execute Formatter Check
+        run: |
+          if [ -n "$(gofmt -l .)" ]; then
+            echo "Código mal formateado detectado. Corre 'make fmt' localmente."
+            gofmt -d .
+            exit 1
+          fi
+
+      - name: Run Golangci-Lint
+        uses: golangci/golangci-lint-action@v4
+        with:
+          version: v1.64.5
+
+      - name: Run Unit Tests
+        run: make test
+
+      - name: Verify Docker Build Stage
+        run: docker build -t prd-engine:latest .
