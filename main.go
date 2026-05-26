@@ -9,7 +9,7 @@ import (
 const (
 	MiNumero   = "+51933391624"
 	MiNombre   = "Servicios Técnicos Automatizados"
-	MiSitioWeb = "https://tusitio.com"
+	MiSitioWeb = "https://high-performance-programmatic-seo-engine.onrender.com/"
 )
 
 var palabrasClave = []string{
