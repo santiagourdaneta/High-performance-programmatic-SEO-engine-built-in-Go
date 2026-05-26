@@ -13,7 +13,7 @@ func TestGooglebotScrapingE2E(t *testing.T) {
 	serverURL := "http://localhost:8080/contacto/desarrollo-software"
 
 	req, _ := http.NewRequest(http.MethodGet, serverURL, nil)
-	
+
 	// Clonamos exactamente la identidad del indexador automático de Google
 	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
 	req.Header.Set("Accept", "text/html,application/xhtml+xml")
@@ -29,7 +29,7 @@ func TestGooglebotScrapingE2E(t *testing.T) {
 	htmlContent := string(bodyBytes)
 
 	// Validaciones críticas del crawler de Google:
-	
+
 	// 1. Verificar inyección JSON-LD estructural
 	if !strings.Contains(htmlContent, `type="application/ld+json"`) {
 		t.Error("E2E FAILED: Falta la etiqueta script de datos estructurados para el robot.")
