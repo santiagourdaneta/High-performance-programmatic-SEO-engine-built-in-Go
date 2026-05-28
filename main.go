@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html"
 	"net/http"
 	"strings"
 )
@@ -35,6 +36,7 @@ func main() {
 	http.HandleFunc("/contacto/", func(w http.ResponseWriter, r *http.Request) {
 		slug := strings.TrimPrefix(r.URL.Path, "/contacto/")
 		titulo := capitalizarTexto(slug)
+		tituloSeguro := html.EscapeString(titulo)
 
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
@@ -65,7 +67,7 @@ func main() {
     <p>Para contratación inmediata, soporte o consultoría sobre <strong>%s</strong>, comunícate directamente:</p>
     <p>Teléfono: <a href="tel:%s">%s</a></p>
 </body>
-</html>`, titulo, MiNumero, titulo, MiNumero, MiNombre, titulo, MiSitioWeb, MiNumero, MiNumero, titulo, titulo, MiNumero, MiNumero)
+</html>`, tituloSeguro, MiNumero, tituloSeguro, MiNumero, MiNombre, tituloSeguro, MiSitioWeb, MiNumero, MiNumero, tituloSeguro, tituloSeguro, MiNumero, MiNumero)
 	})
 
 	http.HandleFunc("/sitemap.xml", func(w http.ResponseWriter, r *http.Request) {
